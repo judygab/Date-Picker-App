@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { WeekDay, Date } from '../../types';
 import { WeekDays } from '../configs/WeekDays';
+import { monthDates } from '../configs/MonthDays';
 
 export const Calendar: React.FC<{}> = ({}) => {
+  //const [monthDates, setMonthDates] = useState<Date[] | []>([]);
+  const generateDates = (date: number) => {
+    for (let i = 0; i < 7; i++) {
+      return <div className="date"><p>{date}</p></div>;
+    }
+  }
+
+  const generateWeeks = (dates: Array<Date>) => {
+    let daysInWeek = 7;
+    let tempArray = [];
+
+    for (let i = 0; i < dates.length; i+= daysInWeek) {
+      tempArray.push(dates.slice(i, i+daysInWeek));
+    }
+
+    return tempArray;
+  }
+
   return (
     <div className="calendar-container">
-      <div className="week-days">
+      <div className="weekdays-container">
         {WeekDays.map(day => (
-          <div>{day}</div>
+          <div className="week-day" key="{day}">{day}</div>
         )
         )}
+      </div>
+      <div className="calendar">
+        {generateWeeks(monthDates).map(week => (
+          <div className="week">
+            {week.map(day => (generateDates(day.day)))}
+          </div>
+        ))}
       </div>
     </div>
   )
