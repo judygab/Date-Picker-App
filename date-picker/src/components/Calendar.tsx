@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { WeekDay, Date } from '../../types';
 import { WeekDays } from '../configs/WeekDays';
 import { monthDates } from '../configs/MonthDays';
+import { ChevronLeftIcon } from '../assets/icons/ChevronLeftIcon';
+import { ChevronRightIcon } from '../assets/icons/ChevronRightIcon';
 
 export const Calendar: React.FC<{}> = ({}) => {
   //const [monthDates, setMonthDates] = useState<Date[] | []>([]);
@@ -24,6 +26,11 @@ export const Calendar: React.FC<{}> = ({}) => {
 
   return (
     <div className="calendar-container">
+      <div className="datepicker-container">
+        <ChevronLeftIcon color="white"/>
+        <span>July 2020</span>
+        <ChevronRightIcon color="white"/>
+      </div>
       <div className="weekdays-container">
         {WeekDays.map(day => (
           <div className="week-day" key="{day}">{day}</div>
