@@ -7,9 +7,10 @@ import { ChevronRightIcon } from '../assets/icons/ChevronRightIcon';
 
 export const Calendar: React.FC<{}> = ({}) => {
   //const [monthDates, setMonthDates] = useState<Date[] | []>([]);
+
   const generateDates = (date: number) => {
     for (let i = 0; i < 7; i++) {
-      return <div className="date"><p>{date}</p></div>;
+      return <div className={`date ${date == 18 ? "selected" : ""}`}><p>{date}</p></div>;
     }
   }
 
@@ -28,7 +29,7 @@ export const Calendar: React.FC<{}> = ({}) => {
     <div className="calendar-container">
       <div className="datepicker-container">
         <ChevronLeftIcon color="white"/>
-        <span>July 2020</span>
+        <span>February 2020</span>
         <ChevronRightIcon color="white"/>
       </div>
       <div className="weekdays-container">
