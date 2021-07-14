@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { WeekDay, Date } from '../../types';
 import { WeekDays } from '../configs/WeekDays';
 import { monthDates } from '../configs/MonthDays';
@@ -7,10 +7,17 @@ import { ChevronRightIcon } from '../assets/icons/ChevronRightIcon';
 
 export const Calendar: React.FC<{}> = ({}) => {
   //const [monthDates, setMonthDates] = useState<Date[] | []>([]);
+  const [selectedDate, setSelectedDate] = useState<string | null>();
+
+  const handleChange = (e: MouseEvent<HTMLButtonElement>) => {
+    setSelectedDate(e.currentTarget.getAttribute('value'));
+  }
 
   const generateDates = (date: number) => {
+    let selectedDateNumber: number = selectedDate ? parseInt(selectedDate) : 0;
+    console.log(selectedDateNumber);
     for (let i = 0; i < 7; i++) {
-      return <div className={`date ${date == 18 ? "selected" : ""}`}><p>{date}</p></div>;
+      return <button className={`date ${date == 18 ? "today" : ""} ${date == selectedDateNumber ? "selected" : ""}`} value={date} onClick={handleChange}><p>{date}</p></button>;
     }
   }
 
@@ -34,7 +41,7 @@ export const Calendar: React.FC<{}> = ({}) => {
       </div>
       <div className="weekdays-container">
         {WeekDays.map(day => (
-          <div className="week-day" key="{day}">{day}</div>
+          <div className="week-day">{day}</div>
         )
         )}
       </div>

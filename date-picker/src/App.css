@@ -78,9 +78,19 @@ body {
   align-items: flex-start;
 }
 
-.selected {
+.today {
   background-color: #FD6CBB;
   color: white;
   border-radius: 5px;
   filter: drop-shadow(2px 2px 2px #FD6CBB);
+}
+
+.selected {
+  border: solid 1px grey;
+  border-radius: 5px;
+}
+
+button {
+  background: white;
+  border: none;
 }
